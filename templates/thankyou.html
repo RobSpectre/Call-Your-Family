@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Mobile App Distribution Using Twilio{% endblock %}
+{% block title %}Success! - Mobile App Distribution Using Twilio{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" type="text/css"
@@ -15,24 +15,19 @@
 <div id="container">
     <header>
         <div id="header">
-            <h1 class="section-heading">Oh Snap!</h1>
+            <h1 class="section-heading">Success!</h1>
         </div>
     </header>
     <section>
         <div id="content">
-            <h2 class="section-heading">You're about to use Mobile App
-                Distribution using Twilio.</h2>
+            <h2 class="section-heading">We just sent an example invite to:
+                {{ params['phone_number'] }}</h2>
             <p class="blurb">Here are a few important links with this example
                 app:</p>
-            <a href="#" class="button">Send Invite</a>
-            <dl id="url_list">
-                <dt>Invite URI to be shortened</dt>
-                <dd><a href="{{ params['invite_uri'] }}">
-                    {{ params['invite_uri'] }}</a></dd>
-                <dt>SMS Request URL for your Twilio Number</dt>
-                <dd><a href="{{ params['sms_request_url'] }}">
-                    {{ params['sms_request_url'] }}</a></dd>
-           </dl>
+            <h3>To learn more about using Twilio for mobile app distribution,
+                check out <a
+                    href="http://www.twilio.com/solutions/mobileappdistribution">The
+                    Twilio website</a>.</h3>
         </div>
     </section>
     <footer>
