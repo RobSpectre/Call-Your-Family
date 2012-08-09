@@ -6,3 +6,4 @@ from twilio.rest import resources
 
 import configure
 from app import app
+import forms

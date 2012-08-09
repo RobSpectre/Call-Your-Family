@@ -19,5 +19,9 @@ TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID', None)
 TWILIO_AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN', None)
 TWILIO_CALLER_ID = os.environ.get('TWILIO_CALLER_ID', None)
 TWILIO_APP_SID = os.environ.get('TWILIO_APP_SID', None)
-IOS_URI = os.environ.get('IOS_URI', None)
-ANDROID_URI = os.environ.get('ANDROID_URI', None)
+IOS_URI = os.environ.get('IOS_URI',
+    'http://itunes.apple.com/us/app/plants-vs.-zombies/id350642635?mt=8&uo=4')
+ANDROID_URI = os.environ.get('ANDROID_URI',
+        'http://market.android.com/details?id=com.popcap.pvz_row')
+WEB_URI = os.environ.get('WEB_URI',
+        'http://www.popcap.com/games/plants-vs-zombies/pc')

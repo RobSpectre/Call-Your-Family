@@ -26,7 +26,8 @@ This app is an example of this use case with two components.
 1. An SMS Request URL that will respond to incoming texts with a link to the
    app.
 
-App used in the live example is for my favorite iPhone game, Plants vs. Zombies.
+App used in this example is for my favorite mobile game, [Plants vs.
+Zombies](http://www.popcap.com/games/plants-vs-zombies/pc).
 
 
 ## Usage

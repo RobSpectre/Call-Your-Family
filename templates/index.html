@@ -15,16 +15,42 @@
 <div id="container">
     <header>
         <div id="header">
+        {% if params['config_errors'] %}
+            <h1 class="section-heading">Almost There!</h1>
+        {% else %}
             <h1 class="section-heading">Oh Snap!</h1>
+        {% endif %}
         </div>
     </header>
     <section>
         <div id="content">
+        {% if params['config_errors'] %}
+            <h2 class="section-heading">We just need to set a few more
+                configuration options.</h2>
+            <p class="blurb">Check your local_settings.py to set these missing
+                options:</p>
+            <dl id="url_list">
+                {% for error in params['config_errors'] %}
+                <dt>Error</dt>
+                <dd>{{ error }}</dd>
+                {% endfor %}
+            </dl>
+        {% else %}
             <h2 class="section-heading">You're about to use Mobile App
                 Distribution using Twilio.</h2>
             <p class="blurb">Here are a few important links with this example
                 app:</p>
-            <a href="#" class="button">Send Invite</a>
+            <form id="form" method="POST" action="/">
+                {% if form.phone_number.errors %}
+                    {% for error in form.phone_number.errors %}
+                        <ul class="errors"><li>{{ error }}</li></ul>
+                    {% endfor %}
+                {% else %}
+                    <div id="phone_number_label">{{ form.phone_number.label }}</div>
+                {% endif %}
+                <div id="phone_number">{{ form.phone_number }}</div>
+                <input type="submit" value="Send Invite" class="button" />
+            </form>
             <dl id="url_list">
                 <dt>Invite URI to be shortened</dt>
                 <dd><a href="{{ params['invite_uri'] }}">
@@ -33,6 +59,7 @@
                 <dd><a href="{{ params['sms_request_url'] }}">
                     {{ params['sms_request_url'] }}</a></dd>
            </dl>
+        {% endif %}
         </div>
     </section>
     <footer>

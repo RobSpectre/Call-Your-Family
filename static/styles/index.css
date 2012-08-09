@@ -27,8 +27,9 @@ body, html {
 
 #content {
     width: 960px;
+    height: 250px;
     margin: 0 auto;
-    padding: 70px 0 0 0;
+    padding: 90px 0 0 0;
 }
 
 #content .section-heading {
@@ -62,15 +63,18 @@ body, html {
     color: #DDD;
 }
 
-#url_list dd, #url_list a {
-    margin: 3px 0 5px 30px;
+#url_list dd, #content a {
     font-family: 'Helvetica',sans-serif;
-    font-size: 18px;
     font-weight: 100;
     color: #7C0000;
 }
 
-#url_list a:hover {
+#url_list a {
+    font-size: 18px;
+    margin: 3px 0 5px 30px;
+}
+
+#content a:hover {
     color: #FFF;
 }
 
@@ -78,22 +82,55 @@ body, html {
     text-decoration: none;
 }
 
-#content .button {
+#content form {
     width: 200px;
     float: right;
-    margin: 30px 80px 0 0;
+    margin: -55px 100px 0 0;
     padding: 10px;
     font-family: 'Helvetica',sans-serif;
+    color: #7C0000;
+}
+
+#content label {
+    font-size: 14px;
+    font-weight: 60;
+    text-align: left;
+    padding: 5px 0 5px 0;
+}
+
+#content #phone_number {
+    width: 198px;
+    font-size: 18px;
+    font-weight: 60;
+    text-align: left;
+    padding: 5px 0 5px 0;
+    margin-bottom: 5px;
+}
+
+#content #phone_number input {
+    border: 2px solid #454545;
+}
+
+#content #phone_number input:hover, #content #phone_number input:focus {
+    border: 2px solid #efefef;
+}
+
+#content .button {
+    width: 200px;
     font-size: 26px;
     font-weight: 100;
-    color: #454545;
+    padding: 10px 0 10px 0;
     text-align: center;
+    color: #454545;
     background-color: #EFEFEF;
     background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#cccccc));
     background: -moz-linear-gradient(top, #efefef, #cccccc);
     border-top: 2px solid #FFF;
     border-bottom: 1px solid #555;
+    border-left: 0px;
+    border-right: 0px;
 }
+
 
 #content .button:hover {
     color: #222;
@@ -112,10 +149,14 @@ body, html {
     border-bottom: 1px solid #FFF;
 }
 
+#form ul, #form li {
+    margin: 0;
+    list-style: none;
+}
+
 .footer {
     width: 960px;
     margin: 0 auto;
-    padding: 10px 0 0 0;
     text-align: center;
     color: #7C0000;
 }

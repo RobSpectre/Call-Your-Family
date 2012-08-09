@@ -1,4 +1,4 @@
 Flask==0.8
-Flask-SQLAlchemy==0.15
+flask-wtf==1.0.1
 twilio==3.3.6
 mock==0.8.0

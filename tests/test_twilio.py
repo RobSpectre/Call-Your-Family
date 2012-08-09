@@ -1,7 +1,6 @@
 import unittest
 from .context import app
 
-
 class TwiMLTest(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()
@@ -38,9 +37,7 @@ class TwiMLTest(unittest.TestCase):
         return self.app.post(path, data=params)
 
 
-class SmsTests(TwiMLTest):
+class ExampleTests(TwiMLTest):
     def test_sms(self):
         response = self.sms("Test")
         self.assertTwiML(response)
-        self.assertTrue("/invite?external=True" in response.data,
-                "Did not get invite URI in response: %s" % response.data)
