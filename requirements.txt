@@ -1,4 +1,4 @@
-Flask==0.8
-flask-wtf==1.0.1
-twilio==3.3.6
+Flask==0.9
+Flask-WTF==0.8
+twilio==3.3.10
 mock==0.8.0
