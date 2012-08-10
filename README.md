@@ -7,9 +7,7 @@ Built for Rob's talk on mobile app distribution originally given at USV, June
 2012.
 
 [![Build
-Status](https://secure.travis-ci.org/RobSpectre/Mobile-App-Distribution-with-SMS)]
-(http://travis-ci.org/RobSpectre/Mobile-App-Distribution-with-SMS)
-
+Status](https://secure.travis-ci.org/RobSpectre/Mobile-App-Distribution-with-SMS.png?branch=master)](http://travis-ci.org/RobSpectre/Mobile-App-Distribution-with-SMS)
 
 ## Summary
 
