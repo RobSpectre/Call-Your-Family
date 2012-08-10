@@ -113,7 +113,7 @@ def sms():
     # Respond to any text inbound text message with a link to the app!
     response = twiml.Response()
     response.sms("Download Plants vs. Zombies now using this " \
-            "link: %s" % url_for('.invite', external=True))
+            "link: http://mad.brooklynhacker.com/invite")
     return str(response)
 
 
