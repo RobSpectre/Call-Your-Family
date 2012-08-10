@@ -36,6 +36,19 @@ The app used in this example is for my favorite mobile game, [Plants vs.
 Zombies](http://www.popcap.com/games/plants-vs-zombies/pc).
 
 
+## Features
+
+This example app comes loaded with the kind of tasty goodness you expect from
+Twilio, including:
+
+* _Production Ready Form_ - ready-to-use Python web form with basic phone number
+  validation.
+* _Invitation Link_ - Code to redirect your users to their native app stores.
+* _Easy Deployment_ - Use Heroku to see this use case in action in *seven*
+  commands.
+* _Full Test Suite_ - Seriously.  It's good for you.
+
+
 ## Usage
 
 Once you deploy this app, you get a simple web form that asks you to put in your
