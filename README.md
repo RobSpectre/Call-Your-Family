@@ -14,28 +14,51 @@ Status](https://secure.travis-ci.org/RobSpectre/Mobile-App-Distribution-with-SMS
 ## Summary
 
 This is a quick Flask app I put together to demonstrate a common Twilio use
-case, using SMS to invite users to download your mobile application.  100% of
-your mobile app customers can receive SMS and with its naturally simple, 160
-character interface and easy implementation using Twilio, it makes an effective,
-cheap and very easy way to get your app in front of potential users.
+case - using SMS to invite users to download your mobile application.  A
+powerful implementation that require little time and is supercheap, leveraging
+Twilio SMS on your webpage is an easy way for you to bridge the distance between
+your users' keyboards and their phones and get them in their phone's App Store
+to install your app right away.
 
-This app is an example of this use case with two components.
+It works like this:
 
-1. A simple web form that will send a link to the app to the to the submitted
-   phone number.
-1. An SMS Request URL that will respond to incoming texts with a link to the
-   app.
+1. A user inputs his/her phone number in a simple web form.
+1. Using Twilio SMS, you send him/her an invitation link to install your app.
+1. When the user clicks on the link in the text message, he/she is redirected to
+   the native App Store for his/her phone.
+1. Your user installs the app - with *crazy* conversion rates!
 
-App used in this example is for my favorite mobile game, [Plants vs.
+For more information on how to use Twilio to drive users to your mobile app,
+check out [my talk on the
+subject](https://github.com/RobSpectre/Talks/tree/master/Mobile%20App%20Distribution%20via%20SMS)
+or a little whitepaper we whipped up on
+[the Twilio website](http://www.twilio.com/solutions/mobile-app-distribution).
+
+The app used in this example is for my favorite mobile game, [Plants vs.
 Zombies](http://www.popcap.com/games/plants-vs-zombies/pc).
 
 
 ## Usage
 
-Text anything to (646) 606-2920 to see it work!
+Once you deploy this app, you get a simple web form that asks you to put in your
+phone number:
 
-![Example of it
-working](https://raw.github.com/RobSpectre/Mobile-App-Distribution-with-SMS/master/images/usage.png)
+![Invitation web 
+form](https://raw.github.com/RobSpectre/Mobile-App-Distribution-with-SMS/master/static/images/screenshot0.png)
+
+Then presto, the user receives a text message with a magical link!
+
+![Message the user
+receives](https://raw.github.com/RobSpectre/Mobile-App-Distribution-with-SMS/master/static/images/screenshot1.png)
+
+Then - holy biscuits! - regardless of what type of phone they are using, they
+get redirected *right* to their native app store to install!
+
+![Holy crap I'm in the
+app store](https://raw.github.com/RobSpectre/Mobile-App-Distribution-with-SMS/master/static/images/screenshot2.png)
+
+Or just text anything to (646) 666-9422 on both an iOS and an Android device to see it
+without installing anything at all.
 
 
 ## Installation
@@ -69,12 +92,15 @@ git push heroku master
 heroku scale web=1
 </pre>
 
-6) Configure a new TwiML app and Twilio phone number to use the app.
+6) Configure Heroku to use your Twilio credentials.
 <pre>
-python configure.py --account_sid ACxxxxxx --auth_token yyyyyyy -n -N
+python configure.py --account_sid ACxxxxxx --auth_token yyyyyyy
 </pre>
 
-7) Text the new number and roll your next character!
+7) Open the app in your browser and get an invite!
+<pre>
+heroku open
+</pre> 
 
 
 ### Development
@@ -99,12 +125,32 @@ foreman start
 
 ## Testing
 
-Took the liberty of including some simple tests for the examples here.  Easy for
-you to expand on for your use case.
+This example app comes with a full testing suite with the same kind of form
+validation that you would want to use in production.  To run the tests, simply
+use `nose` with this shortcut command:
 
 <pre>
 make test
 </pre>
+
+
+## Anatomy
+
+This app does have a little more complexity than our usual examples in an effort
+to be production-ready.  Here's a quick rundown of all the important files:
+
+* `local_settings.py` - Contains all the configuration options for the app,
+  including Twilio credentials and the URIs you want to which you wish to direct
+  your mobile users.
+* `app.py` - The meat of the app.  Contains all the logic for rendering the
+  form, sending the invites, and redirecting mobile users.
+* `forms.py` - The Form along with some basic validators that make it suitable
+  for production use.
+* `tests` - Test suite testing the web, Twilio and form validation functionality
+  of this example.
+* `templates` - The gorgeous interface I surreptitiously from
+  [Andres](http://twitter.com/enborra).
+* `static` - Location of the styles for above.
 
 
 ## Meta 

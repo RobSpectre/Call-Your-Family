@@ -32,5 +32,3 @@ class SMSInviteForm(Form):
         if e164_number[0] != u'+':
             e164_number = u'+' + e164_number
         return e164_number
-
-

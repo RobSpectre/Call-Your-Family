@@ -12,6 +12,13 @@ from twilio import TwilioRestException
 
 from forms import SMSInviteForm
 
+
+'''
+Configure App
+Configures the Flask app with the options set in local_settings.py.
+'''
+
+
 # Declare and configure application
 app = Flask(__name__, static_url_path='/static')
 app.config.from_pyfile('local_settings.py')
@@ -34,7 +41,8 @@ def index():
     config_errors = []
     for option in ['TWILIO_ACCOUNT_SID', 'TWILIO_AUTH_TOKEN']:
         if not app.config[option]:
-            config_errors.append("%s is not configured for this host." % option)
+            config_errors.append("%s is not configured for this host."
+                    % option)
 
     # Define important links
     params = {
@@ -102,6 +110,7 @@ This accepts incoming text messages and replies with a link to the app.
 
 @app.route('/sms', methods=['GET', 'POST'])
 def sms():
+    # Respond to any text inbound text message with a link to the app!
     response = twiml.Response()
     response.sms("Download Plants vs. Zombies now using this " \
             "link: %s" % url_for('.invite', external=True))
