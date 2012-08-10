@@ -1,6 +1,8 @@
 import unittest
 from mock import patch
 
+from twilio.rest import TwilioRestClient
+
 from .context import app
 
 app.config['TWILIO_ACCOUNT_SID'] = 'ACxxxxxx'
@@ -12,6 +14,8 @@ app.config['ANDROID_URI'] = \
         'http://market.android.com/details?id=com.popcap.pvz_row'
 app.config['WEB_URI'] = 'http://www.popcap.com/games/plants-vs-zombies/pc'
 
+app.twilio_client = TwilioRestClient(app.config['TWILIO_ACCOUNT_SID'],
+        app.config['TWILIO_AUTH_TOKEN'])
 
 class WebTest(unittest.TestCase):
     def setUp(self):
