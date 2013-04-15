@@ -14,7 +14,7 @@
 <script type="text/javascript">
  
       Twilio.Device.setup("{{ token }}");
- 
+
       Twilio.Device.ready(function (device) {
         $("#action").text("Call");
         $("#action").unbind();
@@ -28,21 +28,26 @@
       });
  
       Twilio.Device.connect(function (conn) {
+        console.log("wat?");
         $("#message").text("Call established.");
         $("#action").unbind();
-        $("#action").click(hangup());
+        $("#action").click(function() {
+            hangup()
+        });
         $("#action").text("Hangup");
+        console.log("wat?");
       });
  
       Twilio.Device.disconnect(function (conn) {
         $("#message").text("Call ended.");
         $("#action").unbind();
-        $("#action").click(call());
+        $("#action").click(function() {
+            call();
+        });
         $("#action").text("Call");
       });
  
       function call() {
-        // get the phone number to connect the call to
         params = {"PhoneNumber": $("#number").val()};
         Twilio.Device.connect(params);
       }
