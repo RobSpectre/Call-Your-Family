@@ -90,11 +90,11 @@ body, html {
 }
 
 #number {
-    width: 198px;
+    width: 193px;
     font-size: 18px;
     font-weight: 60;
     text-align: left;
-    padding: 5px 0 5px 0;
+    padding: 5px 0 5px 3px;
     margin-bottom: 5px;
 }
 
@@ -106,7 +106,7 @@ body, html {
     border: 2px solid #efefef;
 }
 
-#content .button {
+.button {
     width: 200px;
     font-size: 26px;
     font-weight: 100;
@@ -120,10 +120,11 @@ body, html {
     border-bottom: 1px solid #555;
     border-left: 0px;
     border-right: 0px;
+    display: block;
 }
 
 
-#content .button:hover {
+.button:hover {
     color: #222;
     background-color: #FFF;
     background: -webkit-gradient(linear, left top, left bottom, from(white), to(#dddddd));
@@ -131,7 +132,7 @@ body, html {
     border-top: 2px solid #FFF;
 }
 
-#content .button:active {
+.button:active {
     color: #222;
     background-color: #FFF;
     background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#efefef));
@@ -140,9 +141,9 @@ body, html {
     border-bottom: 1px solid #FFF;
 }
 
-#form ul, #form li {
-    margin: 0;
-    list-style: none;
+#call-controls {
+    margin: 0 90px 0 0;
+    float: right;
 }
 
 .footer {

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Mobile App Distribution Using Twilio{% endblock %}
+{% block title %}Call Your Family - Boston Marathon{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" type="text/css"
@@ -17,6 +17,7 @@
  
       Twilio.Device.ready(function (device) {
         $("#log").text("Ready");
+        $("#action").unbind();
         $("#action").click(function () {
             call();
         });
@@ -28,12 +29,14 @@
  
       Twilio.Device.connect(function (conn) {
         $("#message").text("Call established.");
+        $("#action").unbind();
         $("#action").click(hangup());
         $("#action").text("Hangup");
       });
  
       Twilio.Device.disconnect(function (conn) {
         $("#message").text("Call ended.");
+        $("#action").unbind();
         $("#action").click(call());
         $("#action").text("Call");
       });
@@ -77,24 +80,31 @@
         {% else %}
             <h2 class="section-heading">If you're in Boston without phone
                 service, use this website to call your family.</h2>
-            <p class="blurb">Here are a few important links with this example
-                app:</p>
 
             <div id="call-controls">    
                 <button class="button" id="action">Call</button>
-                <input type="text" id="number" name="number" placeholder="Enter a phone number to call." />
+                <input type="text" id="number" name="number"
+                placeholder="xxx-xxx-xxxx" />
             </div>
 
-            <ul id="url_list">
-                <li>Phone calls last for ten minutes.</li>
-                <li>This website will be available until phone service returns
-                to normal in Boston.</li>
-                <li>Contact <a href="mailto:help@twilio.com">help@twilio.com</a> if you encounter any problems.</li>
-           </ul>
+            <p class="blurb">Here's how to use this:</p>
+
+            <ol id="url_list">
+                <li>Put a phone number in the input box on the right.</li>
+                <li>Click call.</li>
+                <li>Click "Allow" on the permissions dialog that follows.</li>
+                <li>Speak into the microphone on your laptop or desktop to talk
+                with your family for up to ten minutes.</li>
+           </ol>
         {% endif %}
         </div>
     </section>
     <footer>
+        <p class="footer">
+            Calls are free for you and for the party you call.  Calls last ten
+            minutes.  Service will be available as long as phone coverage is
+            poor in Boston.
+        </p>
         <p class="footer">
             Source on <a
                 href="https://github.com/RobSpectre/Call-Your-Family">Github</a>.
