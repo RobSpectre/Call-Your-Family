@@ -4,35 +4,14 @@ from flask import Flask
 from flask import render_template
 from flask import url_for
 from flask import request
-from flask import redirect
 
 from twilio import twiml
-from twilio.rest import TwilioRestClient
-from twilio import TwilioRestException
-
-from forms import SMSInviteForm
-
-
-'''
-Configure App
-Configures the Flask app with the options set in local_settings.py.
-'''
+from twilio.util import TwilioCapability
 
 
 # Declare and configure application
 app = Flask(__name__, static_url_path='/static')
 app.config.from_pyfile('local_settings.py')
-# Instantiate Twilio REST client to use for sending SMS.
-if app.config['TWILIO_ACCOUNT_SID'] and app.config['TWILIO_AUTH_TOKEN']:
-    app.twilio_client = TwilioRestClient(app.config['TWILIO_ACCOUNT_SID'],
-                app.config['TWILIO_AUTH_TOKEN'])
-
-
-'''
-Index Page
-Show a simple web form to submit your phone number and receive an
-SMS message.
-'''
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -47,73 +26,32 @@ def index():
     # Define important links
     params = {
         'sms_request_url': url_for('.sms', _external=True),
-        'invite_uri': url_for('.invite', _external=True),
         'config_errors': config_errors}
 
-    # Check if this is a submitted form, if so send the submitted
-    # phone number an SMS invite.
-    if request.method == 'POST':
-        form = SMSInviteForm(request.form)
-        # Check if form validates, if so send text message.
-        if form.validate():
-            try:
-                app.twilio_client.sms.messages.create(
-                    from_=app.config['TWILIO_CALLER_ID'],
-                    to=form.e164, body="Download Plants vs. "\
-                            "Zombies now using this link: %s" % \
-                            url_for('.invite', _external=True))
-            except TwilioRestException as e:
-                # If we encounter a Twilio error, invalidate the form and
-                # ask user to enter again.
-                form.phone_number.errors = [unicode(e.msg)]
-                return render_template('index.html', params=params,
-                        form=form)
-            # Render Thank You page.
-            params = {
-                'phone_number': request.form['phone_number']}
-            return render_template('thankyou.html', params=params)
-    else:
-        # If it's not a post, just create a blank form.
-        form = SMSInviteForm()
+    # Generate capability token
+    capability = TwilioCapability(app.config['TWILIO_ACCOUNT_SID'],
+        app.config['TWILIO_AUTH_TOKEN'])
+    capability.allow_client_outgoing(app.config['TWILIO_APP_SID'])
+    token = capability.generate()
 
     # If not a submission, render form.
-    return render_template('index.html', params=params, form=form)
+    return render_template('index.html', params=params, token=token)
 
 
-'''
-Invite URI
-This is the link users are set to redirect them to the app in their platform's
-app store.
-'''
-
-
-@app.route('/invite')
-def invite():
-    # Get user-agent
-    user_agent = request.headers.get('User-Agent')
-    # If user is on iPhone/iPad, send to iTunes App Store
-    if "iPhone" in user_agent:
-        return redirect(app.config['IOS_URI'])
-    # If user is on Android, send to Google Marketplace
-    elif "Android" in user_agent:
-        return redirect(app.config['ANDROID_URI'])
-    # Anything else, given them the web experience
-    else:
-        return redirect(app.config['WEB_URI'])
-
-
-'''
-SMS Request URL
-This accepts incoming text messages and replies with a link to the app.
-'''
+@app.route('/voice', methods=['POST'])
+def voice():
+    response = twiml.Response()
+    with response.dial() as dial:
+        dial.number(request.form['PhoneNumber'])
+    return str(response)
 
 
 @app.route('/sms', methods=['GET', 'POST'])
 def sms():
     # Respond to any text inbound text message with a link to the app!
     response = twiml.Response()
-    response.sms("Download Plants vs. Zombies now using this " \
-            "link: http://mad.brooklynhacker.com/invite")
+    response.sms("This number belongs to the Twilio Call Your Family app for " \
+            "Boston.  Please visit [URL] for more info.")
     return str(response)
 
 

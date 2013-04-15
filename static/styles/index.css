@@ -33,7 +33,7 @@ body, html {
 }
 
 #content .section-heading {
-    margin: 0 0 10px 0;
+    margin: -15px 0 10px 0;
     font-family: 'Helvetica',sans-serif;
     font-size: 38px;
     font-weight: 100;
@@ -54,7 +54,7 @@ body, html {
     margin: 10px 0 20px 85px;
 }
 
-#url_list dt {
+#url_list dt, #url_list li {
     line-height: 1.2em;
     margin: 0px;
     font-family: 'Helvetica',sans-serif;
@@ -82,15 +82,6 @@ body, html {
     text-decoration: none;
 }
 
-#content form {
-    width: 200px;
-    float: right;
-    margin: -55px 100px 0 0;
-    padding: 10px;
-    font-family: 'Helvetica',sans-serif;
-    color: #7C0000;
-}
-
 #content label {
     font-size: 14px;
     font-weight: 60;
@@ -98,7 +89,7 @@ body, html {
     padding: 5px 0 5px 0;
 }
 
-#content #phone_number {
+#number {
     width: 198px;
     font-size: 18px;
     font-weight: 60;
@@ -107,11 +98,11 @@ body, html {
     margin-bottom: 5px;
 }
 
-#content #phone_number input {
+#number input {
     border: 2px solid #454545;
 }
 
-#content #phone_number input:hover, #content #phone_number input:focus {
+#number input:hover, #number input:focus {
     border: 2px solid #efefef;
 }
 

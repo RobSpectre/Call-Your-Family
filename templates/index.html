@@ -6,9 +6,48 @@
 <link rel="stylesheet" type="text/css"
     href="http://static1.twilio.com/packages/base.css"/>
 <link rel="stylesheet" type="text/css"
-    href="http://static0.twilio.com/packages/buttons.css" />
-<link rel="stylesheet" type="text/css"
     href="/static/styles/index.css" />
+<script type="text/javascript" 
+    src="//static.twilio.com/libs/twiliojs/1.1/twilio.min.js"></script>
+<script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+ 
+      Twilio.Device.setup("{{ token }}");
+ 
+      Twilio.Device.ready(function (device) {
+        $("#log").text("Ready");
+        $("#action").click(function () {
+            call();
+        });
+      });
+ 
+      Twilio.Device.error(function (error) {
+        $("#message").text("Error: " + error.message);
+      });
+ 
+      Twilio.Device.connect(function (conn) {
+        $("#message").text("Call established.");
+        $("#action").click(hangup());
+        $("#action").text("Hangup");
+      });
+ 
+      Twilio.Device.disconnect(function (conn) {
+        $("#message").text("Call ended.");
+        $("#action").click(call());
+        $("#action").text("Call");
+      });
+ 
+      function call() {
+        // get the phone number to connect the call to
+        params = {"PhoneNumber": $("#number").val()};
+        Twilio.Device.connect(params);
+      }
+ 
+      function hangup() {
+        Twilio.Device.disconnectAll();
+      }
+</script>
 {% endblock %}
 
 {% block content %}
@@ -18,14 +57,14 @@
         {% if params['config_errors'] %}
             <h1 class="section-heading">Almost There!</h1>
         {% else %}
-            <h1 class="section-heading">Oh Snap!</h1>
+            <h1 class="section-heading">Call Your Family</h1>
         {% endif %}
         </div>
     </header>
     <section>
         <div id="content">
         {% if params['config_errors'] %}
-            <h2 class="section-heading">We just need to set a few more
+            <h2 id="message" class="section-heading">We just need to set a few more
                 configuration options.</h2>
             <p class="blurb">Check your local_settings.py to set these missing
                 options:</p>
@@ -36,36 +75,29 @@
                 {% endfor %}
             </dl>
         {% else %}
-            <h2 class="section-heading">You're about to use Mobile App
-                Distribution using Twilio.</h2>
+            <h2 class="section-heading">If you're in Boston without phone
+                service, use this website to call your family.</h2>
             <p class="blurb">Here are a few important links with this example
                 app:</p>
-            <form id="form" method="POST" action="/">
-                {% if form.phone_number.errors %}
-                    {% for error in form.phone_number.errors %}
-                        <ul class="errors"><li>{{ error }}</li></ul>
-                    {% endfor %}
-                {% else %}
-                    <div id="phone_number_label">{{ form.phone_number.label }}</div>
-                {% endif %}
-                <div id="phone_number">{{ form.phone_number }}</div>
-                <input type="submit" value="Send Invite" class="button" />
-            </form>
-            <dl id="url_list">
-                <dt>Invite URI to be shortened</dt>
-                <dd><a href="{{ params['invite_uri'] }}">
-                    {{ params['invite_uri'] }}</a></dd>
-                <dt>SMS Request URL for your Twilio Number</dt>
-                <dd><a href="{{ params['sms_request_url'] }}">
-                    {{ params['sms_request_url'] }}</a></dd>
-           </dl>
+
+            <div id="call-controls">    
+                <button class="button" id="action">Call</button>
+                <input type="text" id="number" name="number" placeholder="Enter a phone number to call." />
+            </div>
+
+            <ul id="url_list">
+                <li>Phone calls last for ten minutes.</li>
+                <li>This website will be available until phone service returns
+                to normal in Boston.</li>
+                <li>Contact <a href="mailto:help@twilio.com">help@twilio.com</a> if you encounter any problems.</li>
+           </ul>
         {% endif %}
         </div>
     </section>
     <footer>
         <p class="footer">
             Source on <a
-                href="https://github.com/RobSpectre/Mobile-App-Distribution-with-SMS">Github</a>.
+                href="https://github.com/RobSpectre/Call-Your-Family">Github</a>.
             Released under <a
                 href="http://www.opensource.org/licenses/mit-license.html">
                 MIT license</a>.

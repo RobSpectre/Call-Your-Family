@@ -18,7 +18,7 @@ class NoCharacters(object):
             raise ValidationError(self.message)
 
 
-class SMSInviteForm(Form):
+class PhoneNumberValidationForm(Form):
     phone_number = TextField('Enter Your Phone Number', [validators.Required(),
         validators.length(min=7, max=25), NoCharacters()])
 
