@@ -16,7 +16,7 @@
       Twilio.Device.setup("{{ token }}");
  
       Twilio.Device.ready(function (device) {
-        $("#log").text("Ready");
+        $("#action").text("Call");
         $("#action").unbind();
         $("#action").click(function () {
             call();
@@ -82,7 +82,7 @@
                 service, use this website to call your family.</h2>
 
             <div id="call-controls">    
-                <button class="button" id="action">Call</button>
+                <button class="button" id="action">Loading</button>
                 <input type="text" id="number" name="number"
                 placeholder="xxx-xxx-xxxx" />
             </div>
