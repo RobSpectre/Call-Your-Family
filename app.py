@@ -41,7 +41,8 @@ def index():
 @app.route('/voice', methods=['POST'])
 def voice():
     response = twiml.Response()
-    with response.dial(callerId=app.config['TWILIO_CALLER_ID']) as dial:
+    with response.dial(callerId=app.config['TWILIO_CALLER_ID'],
+            timeLimit="600") as dial:
         dial.number(request.form['PhoneNumber'])
     return str(response)
 
@@ -51,7 +52,7 @@ def sms():
     # Respond to any text inbound text message with a link to the app!
     response = twiml.Response()
     response.sms("This number belongs to the Twilio Call Your Family app for " \
-            "Boston.  Please visit [URL] for more info.")
+            "Boston.  Please visit http://callyourfamily.twilio.ly for more info.")
     return str(response)
 
 
