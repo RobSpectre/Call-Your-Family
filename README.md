@@ -28,7 +28,7 @@ up to ten minutes.
 Once you deploy this app, you get a simple web form that asks you to put in your
 phone number:
 
-![Call Form](https://raw.github.com/RobSpectre/Mobile-App-Distribution-with-SMS/master/static/images/screenshot1.png)
+![Call Form](https://raw.github.com/RobSpectre/Call-Your-Family/master/static/images/screenshot1.png)
 
 Call is then placed to the number (if it is valid) using Twilio Client.
 
