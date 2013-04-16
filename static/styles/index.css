@@ -1,10 +1,9 @@
 body, html {
-    background: #d80000;
+    background: #ca2a22;
 }
 
 #container {
     height: 800px;
-    background: url("http://static0.twilio.com/packages/twilio-conference/img/twiliocon-2012-bg.png") no-repeat center top;
 }
 
 #header {
