@@ -1,4 +1,6 @@
 import os
+import signal
+
 
 from flask import Flask
 from flask import render_template
@@ -62,6 +64,14 @@ def sms():
             "for Boston.  Please visit " \
             "http://callyourfamily.twilio.ly for more info.")
     return str(response)
+
+
+# Handles SIGTERM so that we don't get an error when Heroku wants or needs to
+# restart the dyno
+def graceful_shutdown(signum, frame):
+    exit()
+
+signal.signal(signal.SIGTERM, graceful_shutdown)
 
 
 if __name__ == '__main__':
