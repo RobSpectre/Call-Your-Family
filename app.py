@@ -47,6 +47,13 @@ def voice():
     return str(response)
 
 
+@app.route('/inbound', methods=['POST'])
+def inbound():
+    response = twiml.Response()
+    response.play('/static/sounds/inbound.mp3')
+    return str(response)
+
+
 @app.route('/sms', methods=['GET', 'POST'])
 def sms():
     # Respond to any text inbound text message with a link to the app!
