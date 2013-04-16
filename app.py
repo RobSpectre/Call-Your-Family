@@ -58,8 +58,9 @@ def inbound():
 def sms():
     # Respond to any text inbound text message with a link to the app!
     response = twiml.Response()
-    response.sms("This number belongs to the Twilio Call Your Family app for " \
-            "Boston.  Please visit http://callyourfamily.twilio.ly for more info.")
+    response.sms("This number belongs to the Twilio Call Your Family app " \
+            "for Boston.  Please visit " \
+            "http://callyourfamily.twilio.ly for more info.")
     return str(response)
 
 

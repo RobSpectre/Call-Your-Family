@@ -1,52 +1,26 @@
-# Mobile App Distribution with SMS 
+# Call Your Family 
 
-An example Flask application demonstrating how to invite users to download your
-mobile application using Twilio SMS.
+A free Twilio app to let Boston residents call their families while phone
+coverage is poor.
 
-Built for Rob's talk on mobile app distribution originally given at USV, June
-2012.
+Built following the tragic loss of life during the Boston Marathon, 15 April
+2013.
 
 [![Build
-Status](https://secure.travis-ci.org/RobSpectre/Mobile-App-Distribution-with-SMS.png?branch=master)](http://travis-ci.org/RobSpectre/Mobile-App-Distribution-with-SMS)
+Status](https://secure.travis-ci.org/RobSpectre/Call-Your-Family.png?branch=master)](http://travis-ci.org/RobSpectre/Call-Your-Family)
 
 ## Summary
 
-This is a quick Flask app I put together to demonstrate a common Twilio use
-case - using SMS to invite users to download your mobile application.  A
-powerful implementation that require little time and is supercheap, leveraging
-Twilio SMS on your webpage is an easy way for you to bridge the distance between
-your users' keyboards and their phones and get them in their phone's App Store
-to install your app right away.
+Simple app using [Twilio Client](http://www.twilio.com/client) to let folks
+affected by the tragedy at the Boston Marathon to call their family.
 
 It works like this:
 
-1. A user inputs his/her phone number in a simple web form.
-1. Using Twilio SMS, you send him/her an invitation link to install your app.
-1. When the user clicks on the link in the text message, he/she is redirected to
-   the native App Store for his/her phone.
-1. Your user installs the app - with *crazy* conversion rates!
-
-For more information on how to use Twilio to drive users to your mobile app,
-check out [my talk on the
-subject](https://github.com/RobSpectre/Talks/tree/master/Mobile%20App%20Distribution%20via%20SMS)
-or a little whitepaper we whipped up on
-[the Twilio website](http://www.twilio.com/solutions/mobile-app-distribution).
-
-The app used in this example is for my favorite mobile game, [Plants vs.
-Zombies](http://www.popcap.com/games/plants-vs-zombies/pc).
-
-
-## Features
-
-This example app comes loaded with the kind of tasty goodness you expect from
-Twilio, including:
-
-* _Production Ready Form_ - ready-to-use Python web form with basic phone number
-  validation.
-* _Invitation Link_ - Code to redirect your users to their native app stores.
-* _Easy Deployment_ - Use Heroku to see this use case in action in *seven*
-  commands.
-* _Full Test Suite_ - Seriously.  It's good for you.
+1. Put a phone number in the input box on the right.
+1. Click call.
+1. Click "Allow" on the permissions dialog that follows.
+1. Speak into the microphone on your laptop or desktop to talk with your family for
+up to ten minutes.
 
 
 ## Usage
@@ -54,22 +28,10 @@ Twilio, including:
 Once you deploy this app, you get a simple web form that asks you to put in your
 phone number:
 
-![Invitation web 
-form](https://raw.github.com/RobSpectre/Mobile-App-Distribution-with-SMS/master/static/images/screenshot0.png)
+![Call Form](https://raw.github.com/RobSpectre/Mobile-App-Distribution-with-SMS/master/static/images/screenshot0.png)
 
-Then presto, the user receives a text message with a magical link!
+Call is then placed to the number (if it is valid) using Twilio Client.
 
-![Message the user
-receives](https://raw.github.com/RobSpectre/Mobile-App-Distribution-with-SMS/master/static/images/screenshot1.png)
-
-Then - holy biscuits! - regardless of what type of phone they are using, they
-get redirected *right* to their native app store to install!
-
-![Holy crap I'm in the
-app store](https://raw.github.com/RobSpectre/Mobile-App-Distribution-with-SMS/master/static/images/screenshot2.png)
-
-Or just text anything to (646) 666-9422 on both an iOS and an Android device to see it
-without installing anything at all.
 
 
 ## Installation
@@ -80,7 +42,7 @@ Step-by-step on how to deploy and develop this app.
 
 1) Grab latest source
 <pre>
-git clone git://github.com/RobSpectre/Mobile-App-Distribution-with-SMS.git 
+git clone git://github.com/RobSpectre/Call-Your-Family.git 
 </pre>
 
 2) Install dependencies
@@ -155,8 +117,6 @@ to be production-ready.  Here's a quick rundown of all the important files:
   your mobile users.
 * `app.py` - The meat of the app.  Contains all the logic for rendering the
   form, sending the invites, and redirecting mobile users.
-* `forms.py` - The Form along with some basic validators that make it suitable
-  for production use.
 * `tests` - Test suite testing the web, Twilio and form validation functionality
   of this example.
 * `templates` - The gorgeous interface I surreptitiously from
@@ -168,5 +128,7 @@ to be production-ready.  Here's a quick rundown of all the important files:
 
 * No warranty expressed or implied.  Software is as is. Diggity.
 * [MIT License](http://www.opensource.org/licenses/mit-license.html)
-* Lovingly crafted by [Twilio New
- York](http://www.meetup.com/Twilio/New-York-NY/) 
+* Lovingly crafted by [Twilio](http://www.twilio.com) 
+
+
+Call your folks.  They'd like to hear from you.

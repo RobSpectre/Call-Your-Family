@@ -24,21 +24,32 @@ class TwiMLTest(unittest.TestCase):
             'Direction': 'inbound'}
         return self.app.post(path, data=params)
 
-    def call(self, path='/voice', number='+15555555555', digits=None):
+    def call(self, path='/voice', caller_id='+15555555555', digits=None,
+            phone_number=None):
         params = {
             'CallSid': 'CAtesting',
             'AccountSid': 'ACtesting',
-            'From': number,
+            'From': caller_id,
             'To': '+16666666666',
             'CallStatus': 'ringing',
             'ApiVersion': '2010-04-01',
             'Direction': 'inbound'}
         if digits:
             params['Digits'] = digits
+        if phone_number:
+            params['PhoneNumber'] = phone_number
         return self.app.post(path, data=params)
 
 
-class ExampleTests(TwiMLTest):
+class TwilioTests(TwiMLTest):
+    def test_voice(self):
+        response = self.call(phone_number="+15557778888")
+        self.assertTwiML(response)
+
+    def test_inbound(self):
+        response = self.call(path='/inbound')
+        self.assertTwiML(response)
+
     def test_sms(self):
         response = self.sms("Test")
         self.assertTwiML(response)
