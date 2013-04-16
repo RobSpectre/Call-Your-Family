@@ -28,14 +28,12 @@
       });
  
       Twilio.Device.connect(function (conn) {
-        console.log("wat?");
         $("#message").text("Call established.");
         $("#action").unbind();
         $("#action").click(function() {
             hangup()
         });
         $("#action").text("Hangup");
-        console.log("wat?");
       });
  
       Twilio.Device.disconnect(function (conn) {
@@ -48,11 +46,13 @@
       });
  
       function call() {
+        ga('send', 'event', 'Button', 'Click', 'Call');
         params = {"PhoneNumber": $("#number").val()};
         Twilio.Device.connect(params);
       }
  
       function hangup() {
+        ga('send', 'event', 'Button', 'Click', 'Hangup');
         Twilio.Device.disconnectAll();
       }
 
