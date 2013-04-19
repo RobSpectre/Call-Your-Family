@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Success! - Mobile App Distribution Using Twilio{% endblock %}
+{% block title %}Call Your Family - Boston Marathon{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" type="text/css"
     href="http://static1.twilio.com/packages/base.css"/>
-<link rel="stylesheet" type="text/css"
-    href="http://static0.twilio.com/packages/buttons.css" />
 <link rel="stylesheet" type="text/css"
     href="/static/styles/index.css" />
 {% endblock %}
@@ -15,27 +13,43 @@
 <div id="container">
     <header>
         <div id="header">
-            <h1 class="section-heading">Success!</h1>
+        {% if params['config_errors'] %}
+            <h1 class="section-heading">Almost There!</h1>
+        {% else %}
+            <h1 class="section-heading">Call Your Family</h1>
+        {% endif %}
         </div>
     </header>
     <section>
         <div id="content">
-            <h2 class="section-heading">We just sent an example invite to:
-                {{ params['phone_number'] }}</h2>
-            <p class="blurb">To learn more about using Twilio for mobile app distribution,
-                <a href="http://www.twilio.com/solutions/mobile-app-distribution">click here</a>.</p>
+        {% if params['config_errors'] %}
+            <h2 id="message" class="section-heading">We just need to set a few more
+                configuration options.</h2>
+            <p class="blurb">Check your local_settings.py to set these missing
+                options:</p>
+            <dl id="url_list">
+                {% for error in params['config_errors'] %}
+                <dt>Error</dt>
+                <dd>{{ error }}</dd>
+                {% endfor %}
+            </dl>
+        {% else %}
+            <h2 class="section-heading">Our hearts and heads are with
+                Boston.</h2>
+            <div id="bostonstrong" />
+        {% endif %}
         </div>
     </section>
     <footer>
         <p class="footer">
             Source on <a
-                href="https://github.com/RobSpectre/Mobile-App-Distribution-with-SMS">Github</a>.
+                href="https://github.com/RobSpectre/Call-Your-Family">Github</a>.
             Released under <a
                 href="http://www.opensource.org/licenses/mit-license.html">
                 MIT license</a>.
             Lovingly crafted by <a id="twiliocon-2011-link" 
-                href="http://www.meetup.com/Twilio/New-York-NY/">
-                Twilio New York</a>.
+                href="http://www.twilio.com/">
+                Twilio</a>.
         </p>
     </footer>
 </div>

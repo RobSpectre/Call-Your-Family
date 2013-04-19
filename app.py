@@ -8,7 +8,6 @@ from flask import url_for
 from flask import request
 
 from twilio import twiml
-from twilio.util import TwilioCapability
 
 
 # Declare and configure application
@@ -30,14 +29,7 @@ def index():
         'sms_request_url': url_for('.sms', _external=True),
         'config_errors': config_errors}
 
-    # Generate capability token
-    capability = TwilioCapability(app.config['TWILIO_ACCOUNT_SID'],
-        app.config['TWILIO_AUTH_TOKEN'])
-    capability.allow_client_outgoing(app.config['TWILIO_APP_SID'])
-    token = capability.generate()
-
-    # If not a submission, render form.
-    return render_template('index.html', params=params, token=token)
+    return render_template('thankyou.html', params=params)
 
 
 @app.route('/voice', methods=['POST'])

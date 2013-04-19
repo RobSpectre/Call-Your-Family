@@ -147,7 +147,7 @@ body, html {
 
 .footer {
     width: 960px;
-    margin: 0 auto;
+    margin: 200px auto;
     text-align: center;
     color: #7C0000;
 }
@@ -159,4 +159,12 @@ body, html {
 
 .footer a:hover {
     color: #FFF;
+}
+
+#bostonstrong {
+    background: url('/static/images/boston_strong.png');
+    display: block;
+    width: 362px;
+    height: 362px;
+    margin: 0 auto;
 }
