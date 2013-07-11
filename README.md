@@ -132,3 +132,8 @@ to be production-ready.  Here's a quick rundown of all the important files:
 
 
 Call your folks.  They'd like to hear from you.
+
+
+[![githalytics.com
+alpha](https://cruel-carlota.pagodabox.com/cca4f318e2c039d16cdd82106e3c7c30
+"githalytics.com")](http://githalytics.com/RobSpectre/Call-Your-Family)
