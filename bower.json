@@ -1,10 +1,10 @@
 {
-  "name": "twilio-presentation",
-  "version": "0.0.1",
+  "name": "twilio-call-your-family",
+  "version": "1.0.0",
   "authors": [
-    "Rob Spectre <rob.spectre@gmail.com>"
+    "Rob Spectre <rob@twilio.com>"
   ],
-  "description": "Another well-rehearsed talk from Twilio.",
+  "description": "A disaster response app for free phone calls in emergencies",
   "main": "index.html",
   "license": "MIT",
   "homepage": "http://www.brooklynhacker.com",
@@ -17,5 +17,8 @@
     "tests"
   ],
   "dependencies": {
+    "materialize": "~0.96.1",
+    "jquery": "~2.1.3",
+    "intl-tel-input": "~5.8.7"
   }
 }
