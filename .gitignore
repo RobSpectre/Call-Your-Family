@@ -2,6 +2,8 @@ bin
 build
 include
 lib
+node_modules
+static/components
 .Python
 *.pyc
 *.project
@@ -9,3 +11,4 @@ lib
 *.pyo
 *.swp
 *.coverage
+npm-debug.log

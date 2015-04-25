@@ -1,75 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Call Your Family - Boston Marathon{% endblock %}
+{% block title %}Call Your Family - Nepal Earthquake{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" type="text/css"
-    href="http://static1.twilio.com/packages/base.css"/>
-<link rel="stylesheet" type="text/css"
-    href="/static/styles/index.css" />
 <script type="text/javascript" 
-    src="//static.twilio.com/libs/twiliojs/1.1/twilio.min.js"></script>
-<script type="text/javascript"
-    src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript">
-
-
-// What follows is some horrific Javascript.  For that, I am sorry.
-// - rob
- 
-      Twilio.Device.setup("{{ token }}");
-
-      Twilio.Device.ready(function (device) {
-        $("#action").text("Call");
-        $("#action").unbind();
-        $("#action").click(function () {
-            call();
-        });
-      });
- 
-      Twilio.Device.error(function (error) {
-        $("#message").text("Error: " + error.message);
-      });
- 
-      Twilio.Device.connect(function (conn) {
-        $("#message").text("Call established.");
-        $("#action").unbind();
-        $("#action").click(function() {
-            hangup()
-        });
-        $("#action").text("Hangup");
-      });
- 
-      Twilio.Device.disconnect(function (conn) {
-        $("#message").text("Call ended.");
-        $("#action").unbind();
-        $("#action").click(function() {
-            call();
-        });
-        $("#action").text("Call");
-      });
- 
-      function call() {
-        ga('send', 'event', 'Button', 'Click', 'Call');
-        params = {"PhoneNumber": $("#number").val()};
-        Twilio.Device.connect(params);
-      }
- 
-      function hangup() {
-        ga('send', 'event', 'Button', 'Click', 'Hangup');
-        Twilio.Device.disconnectAll();
-      }
-
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new
-     Date();a=s.createElement(o),
-       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-40173701-1', 'twilio.ly');
-    ga('send', 'pageview');
-
-</script>
+    src="//static.twilio.com/libs/twiliojs/1.2/twilio.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -137,4 +72,53 @@
         </p>
     </footer>
 </div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript"
+    src="static/components/intl-tel-input/build/js/intlTelInput.min.js"></script>
+<script type="text/javascript">
+      Twilio.Device.setup("{{ token }}");
+
+      Twilio.Device.ready(function (device) {
+        $("#action").text("Call");
+        $("#action").unbind();
+        $("#action").click(function () {
+            call();
+        });
+      });
+ 
+      Twilio.Device.error(function (error) {
+        $("#message").text("Error: " + error.message);
+      });
+ 
+      Twilio.Device.connect(function (conn) {
+        $("#message").text("Call established.");
+        $("#action").unbind();
+        $("#action").click(function() {
+            hangup()
+        });
+        $("#action").text("Hangup");
+      });
+ 
+      Twilio.Device.disconnect(function (conn) {
+        $("#message").text("Call ended.");
+        $("#action").unbind();
+        $("#action").click(function() {
+            call();
+        });
+        $("#action").text("Call");
+      });
+ 
+      function call() {
+        ga('send', 'event', 'Button', 'Click', 'Call');
+        params = {"PhoneNumber": $("#number").val()};
+        Twilio.Device.connect(params);
+      }
+ 
+      function hangup() {
+        ga('send', 'event', 'Button', 'Click', 'Hangup');
+        Twilio.Device.disconnectAll();
+      }
+</script>
 {% endblock %}

@@ -29,7 +29,7 @@ def index():
         'sms_request_url': url_for('.sms', _external=True),
         'config_errors': config_errors}
 
-    return render_template('thankyou.html', params=params)
+    return render_template('index.html', params=params)
 
 
 @app.route('/voice', methods=['POST'])

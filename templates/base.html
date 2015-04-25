@@ -2,16 +2,32 @@
 <html>
   <head>
       <title>{% block title %}{% endblock %}</title>
-    {% block head %}{% endblock %}
     <link rel="shortcut icon" href="/static/images/favicon.ico" />
-    <link rel="apple-touch-icon"
-        href="http://static1.twilio.com/packages/favicons/img/Twilio_57.png" />
-    <link rel="apple-touch-icon" sizes="72x72"
-        href="http://static1.twilio.com/packages/favicons/img/Twilio_72.png" />
-    <link rel="apple-touch-icon" sizes="114x114"
-        href="http://static0.twilio.com/packages/favicons/img/Twilio_114.png" />
+    <link type="text/css" rel="stylesheet"
+        href="static/components/materialize/dist/css/materialize.min.css"
+        media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+        maximum-scale=1.0, user-scalable=no"/>
+    <link type="text/css" rel="stylesheet" href="static/styles/index.css" />
+    {% block head %}{% endblock %}
   </head>
   <body>
-      {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
+      <script type="text/javascript"
+        src="static/components/jquery/dist/jquery.min.js"></script>
+      <script type="text/javascript"
+        src="static/components/materialize/dist/js/materialize.min.js"></script>
+      <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-40173701-1', 'auto');
+          ga('send', 'pageview');
+      </script>
+      <!-- Live reload for Grunt -->
+      <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>')</script>
+    {% block javascript %}{% endblock %}
   </body>
 </html>
