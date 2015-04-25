@@ -164,8 +164,13 @@
  
     function call() {
       ga('send', 'event', 'Button', 'Click', 'Call');
-      params = {"PhoneNumber": $("#number").val()};
-      Twilio.Device.connect(params);
+      if ($("#number").intlTelInput("isValidNumber")) {
+          var number = $("#number").intlTelInput("getNumber");
+          params = {"PhoneNumber": number};
+          Twilio.Device.connect(params);
+      } else {
+        alert("Please input a valid number first.");
+      }
     }
 
     function hangup() {
