@@ -1,0 +1,46 @@
+// Twilio Colors
+$twilioRed: (
+    "lighten-4": #ed7a7d,
+    "lighten-3": #ea6468,
+    "lighten-2": #e74d52,
+    "lighten-1": #e4383d,
+    "base": #e12127,
+    "dark-1": #ca1e23,
+    "dark-2": #b41a1f,
+    "dark-3": #a9191d,
+    "dark-4": #9d171b,
+);
+
+$twilioMaroon: (
+  "base": #971d1f,
+);
+
+$twilioGray: (
+    "base": #2c2c2a,
+);
+
+$twilioBlack: (
+    "base": #231f20,
+);
+
+$twilioBrown: (
+    "base": #b1aca0,
+);
+
+$twilioBeige: (
+    "base": #dbddd7,
+);
+
+$twilioBlue: (
+    "base": #54c3c2,
+);
+
+// Theme colors
+$colors: (
+    "materialize-red": $twilioRed,
+    "red": $twilioRed,
+    "blue": $twilioBlue,
+    "grey": $twilioGray,
+) !default;
+
+$link-color: $twilioRed !default;

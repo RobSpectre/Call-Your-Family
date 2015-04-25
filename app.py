@@ -8,6 +8,7 @@ from flask import url_for
 from flask import request
 
 from twilio import twiml
+from twilio.util import TwilioCapability
 
 
 # Declare and configure application
@@ -24,9 +25,16 @@ def index():
             config_errors.append("%s is not configured for this host."
                     % option)
 
+    # Create capability token
+    capability = TwilioCapability(app.config.get('TWILIO_ACCOUNT_SID', None),
+                                  app.config.get('TWILIO_AUTH_TOKEN', None))
+    capability.allow_client_outgoing(app.config.get('TWILIO_APP_SID', None))
+    token = capability.generate()
+
     # Define important links
     params = {
         'sms_request_url': url_for('.sms', _external=True),
+        'token': token,
         'config_errors': config_errors}
 
     return render_template('index.html', params=params)

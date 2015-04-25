@@ -5,72 +5,91 @@
 {% block head %}
 <script type="text/javascript" 
     src="//static.twilio.com/libs/twiliojs/1.2/twilio.min.js"></script>
+<link rel="stylesheet" href="static/components/intl-tel-input/build/css/intlTelInput.css">
 {% endblock %}
 
 {% block content %}
-<div id="container">
-    <header>
-        <div id="header">
-        {% if params['config_errors'] %}
-            <h1 class="section-heading">Almost There!</h1>
-        {% else %}
-            <h1 class="section-heading">Call Your Family</h1>
-        {% endif %}
+  <div class="navbar-fixed">
+  <nav class="materialize-red" role="navigation">
+    <div class="nav-wrapper">
+      <div class="col s6">
+          <a href="/" class="brand-logo"><img src="static/images/twilio_logo_white_73x22.png" alt="Twilio"/></a>
+          <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+          <ul class="right hide-on-med-and-down">
+            <li>Free Calls for Survivors of 2015 Nepalese Earthquake</li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+  </div>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      {% if params['config_errors'] %}
+      <h1 class="header center red-text">Configuration Error!</h1>
+      {% else %}
+      <h1 class="header center red-text">Call Your Family</h1>
+      {% endif %}
+      <div class="row center">
+        <h5 class="header col s12 light">Free 10 minute call to a loved one affected by the Nepalese earthquake.</h5>
+      </div>
+      <br><br>
+    </div>
+    <div class="container">
+      <div class="row" style="margin-top: -2em;">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-red-text"><i class="mdi-action-favorite-outline"></i></h2>
+            {% if params['config_errors'] %}
+            <h5 class="center">There was an error configuring this app.</h5>
+            {% for error in params['config_errors'] %}
+            <p class="light">{{ error }}</p>
+            {% endfor %}
+            {% else %}
+            <h5 class="center">Powered By Twilio</h5>
+            <p class="light">1. Select the country you wish to call.</p>
+            <p class="light">2. Input the number.</p>
+            <p class="light">3. Press Call button to talk for ten minutes.</p>
+            {% endif %}
+          </div>
         </div>
-    </header>
-    <section>
-        <div id="content">
-        {% if params['config_errors'] %}
-            <h2 id="message" class="section-heading">We just need to set a few more
-                configuration options.</h2>
-            <p class="blurb">Check your local_settings.py to set these missing
-                options:</p>
-            <dl id="url_list">
-                {% for error in params['config_errors'] %}
-                <dt>Error</dt>
-                <dd>{{ error }}</dd>
-                {% endfor %}
-            </dl>
-        {% else %}
-            <h2 class="section-heading">If you're in Boston without phone
-                service, use this website to call your family.</h2>
-
+        <div class="col s12 m8">
+          <div class="icon-block" style="padding-top: 6em;">
+            <h2 class="center light-red-text"><i class="mdi-action-favorite-outline-on"></i></h2>
+            {% if not params['config_errors'] %}
+            <blockquote>Input the phone number to call below:</blockquote>
             <div id="call-controls">    
-                <button class="button" id="action">Loading</button>
-                <input type="text" id="number" name="number"
-                placeholder="xxx-xxx-xxxx" />
+                <button class="waves-effect waves-light blue btn mdi-notification-do-not-disturb" id="action">  Loading</button>
+                <input type="tel" id="number" name="number"
+                placeholder="Input number here" />
+                <span id="valid-msg" class="hide">✓ Valid</span>
+                <span id="error-msg" class="hide">Invalid number</span>
             </div>
-
-            <p class="blurb">Here's how to use this with Chrome or your
-            Flash-enabled browser:</p>
-
-            <ol id="url_list">
-                <li>Put a phone number in the input box on the right.</li>
-                <li>Click call.</li>
-                <li>Click "Allow" on the permissions dialog that follows.</li>
-                <li>Speak into the microphone on your laptop or desktop to talk
-                with your family for up to ten minutes.</li>
-           </ol>
-        {% endif %}
+            {% endif %}
+          </div>
         </div>
-    </section>
-    <footer>
-        <p class="footer">
-            Calls are free for you and for the party you call.  Calls last ten
-            minutes.  Service will be available as long as phone coverage is
-            poor in Boston.
-        </p>
-        <p class="footer">
-            Source on <a
-                href="https://github.com/RobSpectre/Call-Your-Family">Github</a>.
-            Released under <a
-                href="http://www.opensource.org/licenses/mit-license.html">
-                MIT license</a>.
-            Lovingly crafted by <a id="twiliocon-2011-link" 
-                href="http://www.twilio.com/">
-                Twilio</a>.
-        </p>
-    </footer>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer grey">
+    <div class="container">
+        <div class="col l6 s12">
+            <h5 class="white-text">Powered by <a class="blue-text" href="http://twilio.org">Twilio.org</a></h5>
+            <p class="white-text text-darken-4">Calls are free for you and the party you call. Calls last ten minutes.</p>
+        </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Powered by <a class="materialize-grey-text text-lighten-3" href="http://twilio.org">twilio.org</a>.  
+        Released under <a
+            href="http://www.opensource.org/licenses/mit-license.html">
+            MIT license</a>.  
+        Lovingly crafted by <a 
+            href="https://www.twilio.com/">
+            Twilio</a>.  
+      </div>
+    </div>
+  </footer>
 </div>
 {% endblock %}
 
@@ -78,10 +97,38 @@
 <script type="text/javascript"
     src="static/components/intl-tel-input/build/js/intlTelInput.min.js"></script>
 <script type="text/javascript">
-      Twilio.Device.setup("{{ token }}");
+    $(document).ready(function () {
+      var telInput = $("#number"), errorMsg = $("#error-msg"), validMsg = $("#valid-msg");
+      telInput.intlTelInput({
+        defaultCountry: "np",
+        utilsScript: "static/components/intl-tel-input/lib/libphonenumber/build/utils.js"
+      });
+      // on blur: validate
+      telInput.blur(function() {
+        if ($.trim(telInput.val())) {
+          if (telInput.intlTelInput("isValidNumber")) {
+            validMsg.removeClass("hide");
+          } else {
+            telInput.addClass("error");
+            errorMsg.removeClass("hide");
+            validMsg.addClass("hide");
+          }
+        }
+      });
+
+      // on keydown: reset
+      telInput.keydown(function() {
+        telInput.removeClass("error");
+        errorMsg.addClass("hide");
+        validMsg.addClass("hide");
+      });
+
+      Twilio.Device.setup("{{ params.token }}");
 
       Twilio.Device.ready(function (device) {
-        $("#action").text("Call");
+        $("#action").removeClass("mdi-notification-do-not-disturb");
+        $("#action").addClass("mdi-communication-call");
+        $("#action").text("  Call");
         $("#action").unbind();
         $("#action").click(function () {
             call();
@@ -98,7 +145,9 @@
         $("#action").click(function() {
             hangup()
         });
-        $("#action").text("Hangup");
+        $("#action").removeClass("mdi-communication-call");
+        $("#action").addClass("mdi-communication-call-end");
+        $("#action").text("  Hangup");
       });
  
       Twilio.Device.disconnect(function (conn) {
@@ -107,18 +156,21 @@
         $("#action").click(function() {
             call();
         });
-        $("#action").text("Call");
+        $("#action").removeClass("mdi-communication-call-end");
+        $("#action").addClass("mdi-communication-call");
+        $("#action").text("  Call");
       });
+    });
  
-      function call() {
-        ga('send', 'event', 'Button', 'Click', 'Call');
-        params = {"PhoneNumber": $("#number").val()};
-        Twilio.Device.connect(params);
-      }
- 
-      function hangup() {
-        ga('send', 'event', 'Button', 'Click', 'Hangup');
-        Twilio.Device.disconnectAll();
-      }
+    function call() {
+      ga('send', 'event', 'Button', 'Click', 'Call');
+      params = {"PhoneNumber": $("#number").val()};
+      Twilio.Device.connect(params);
+    }
+
+    function hangup() {
+      ga('send', 'event', 'Button', 'Click', 'Hangup');
+      Twilio.Device.disconnectAll();
+    }
 </script>
 {% endblock %}
