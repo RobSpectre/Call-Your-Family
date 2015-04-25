@@ -13,7 +13,7 @@
   <nav class="materialize-red" role="navigation">
     <div class="nav-wrapper">
       <div class="col s6">
-          <a href="/" class="brand-logo"><img src="static/images/twilio_logo_white_73x22.png" alt="Twilio"/></a>
+          <a href="/" class="brand-logo left"><img src="static/images/twilio_logo_white_73x22.png" alt="Twilio"/></a>
           <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
           <ul class="right hide-on-med-and-down">
             <li>Free Calls for Survivors of 2015 Nepalese Earthquake</li>
@@ -49,7 +49,9 @@
             <h5 class="center">Powered By Twilio</h5>
             <p class="light">1. Select the country you wish to call.</p>
             <p class="light">2. Input the number.</p>
-            <p class="light">3. Press Call button to talk for ten minutes.</p>
+            <p class="light">3. Press Call button.</p>
+            <p class="light">4. Click "Allow" in your browser or dialog.</p>
+            <p class="light">5. Talk through your browser for ten minutes.</p>
             {% endif %}
           </div>
         </div>
@@ -90,6 +92,16 @@
       </div>
     </div>
   </footer>
+  <div id="callbox" class="modal">
+    <div class="modal-content">
+        <h4>Calling...</h4>
+        <p>Click "Allow" to authorize the browser's use of your microphone.</p>
+        <p>Make sure your microphone is turned on.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat mdi-communication-call-end">  Hangup</a>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
@@ -148,6 +160,7 @@
         $("#action").removeClass("mdi-communication-call");
         $("#action").addClass("mdi-communication-call-end");
         $("#action").text("  Hangup");
+        $("#callbox").openModal({complete: hangup()});
       });
  
       Twilio.Device.disconnect(function (conn) {
@@ -165,6 +178,7 @@
     function call() {
       ga('send', 'event', 'Button', 'Click', 'Call');
       if ($("#number").intlTelInput("isValidNumber")) {
+          Materialize.toast('Click "Allow" to use your microphone.', 4000);
           var number = $("#number").intlTelInput("getNumber");
           params = {"PhoneNumber": number};
           Twilio.Device.connect(params);

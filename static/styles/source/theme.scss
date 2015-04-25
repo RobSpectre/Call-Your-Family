@@ -43,4 +43,5 @@ $colors: (
     "grey": $twilioGray,
 ) !default;
 
-$link-color: $twilioRed !default;
+$primary-color: color("blue") !default;
+$link-color: color("teal", "darken-1") !default;
