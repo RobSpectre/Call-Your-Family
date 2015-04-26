@@ -5,7 +5,7 @@ module.exports = function(grunt) {
         sass: {
             theme: {
                 files: {
-                'static/styles/theme.css': 'static/styles/source/theme.scss'
+                'static/styles/index.css': 'static/materialize/sass/materialize.scss'
                 }
             }
         },
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
                 tasks: 'jshint'
             },
             theme: {
-                files: [ 'static/styles/source/*.scss' ],
+                files: [ 'static/materialize/sass/components/*.scss' ],
                 tasks: 'sass'
             },
             html: {
