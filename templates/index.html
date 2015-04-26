@@ -159,7 +159,7 @@
         $("#action").removeClass("mdi-communication-call");
         $("#action").addClass("mdi-communication-call-end");
         $("#action").text("  Hangup");
-        $("#callbox").openModal({complete: hangup()});
+        $("#callbox").openModal({complete: function() {hangup();}});
       });
  
       Twilio.Device.disconnect(function (conn) {
