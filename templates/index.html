@@ -9,19 +9,18 @@
 {% endblock %}
 
 {% block content %}
-  <div class="navbar-fixed">
-  <nav class="materialize-red" role="navigation">
-    <div class="nav-wrapper">
-      <div class="col s6">
-          <a href="/" class="brand-logo left"><img src="static/images/twilio_logo_white_73x22.png" alt="Twilio"/></a>
-          <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-          <ul class="right hide-on-med-and-down">
-            <li>Free Calls for Survivors of 2015 Nepalese Earthquake</li>
-          </ul>
-      </div>
+  <nav class="red" role="navigation">
+    <div class="nav-wrapper container"><a href="/" class="brand-logo"><img src="static/images/twilio_logo_white_73x22.png" /></a>
+      <ul class="right hide-on-med-and-down">
+        <li>Free Calls for Survivors of Nepalese Earthquake</li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li>Free Calls for Survivors of Nepalese Earthquake</li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     </div>
   </nav>
-  </div>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
