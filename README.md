@@ -52,7 +52,7 @@ make init
 
 3) Navigate to folder and create new Heroku Cedar app
 <pre>
-heroku create --stack cedar
+heroku create -s cedar
 </pre>
 
 4) Deploy to Heroku
