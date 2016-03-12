@@ -1,4 +1,4 @@
 Flask==0.9
-twilio>=3.4.5
+twilio>=5.4.0
 mock==0.8.0
 gunicorn==0.14.2
